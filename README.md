@@ -1,4 +1,4 @@
-FileUploader
+File Uploader
 ============
 
 Php File Uploader
