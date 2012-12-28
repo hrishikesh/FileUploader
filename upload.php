@@ -7,10 +7,11 @@
 
 include_once "classes/fileuploader.php";
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 
 $fileUploader = new FileUploader($_FILES['mf_file_aupload']);
-$fileUploader->uploadFile();
+$response = $fileUploader->uploadFile();
+echo json_encode($response);die;
 
 
 
