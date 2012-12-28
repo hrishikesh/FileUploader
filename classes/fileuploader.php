@@ -171,7 +171,7 @@ class FileUploader
      */
     private function saveMetaInfo()
     {
-        $query = sprintf('INSERT INTO uploads_meta(file_name, file_actual_name, file_path, file_size) VALUES(%s,%s,%s)',
+        $query = sprintf('INSERT INTO uploads_meta(file_name, file_actual_name, file_path, file_size) VALUES(%s,%s,%f)',
             $this->getFileName(),$this->getActualFileName(),$this->getUploadFilePath(),$this->getFileSize());
 
         if($lastInsertId = $this->dbConnect->insertData($query)) {
