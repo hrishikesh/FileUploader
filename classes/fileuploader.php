@@ -103,6 +103,7 @@ class FileUploader
 
 
     /**
+     * Returns actual name of file
      * @return string
      */
     public function getActualFileName()
@@ -129,6 +130,7 @@ class FileUploader
 
 
     /**
+     * Uploads file on server
      * @param bool $saveMetaInfo
      * @return array
      */
@@ -164,6 +166,7 @@ class FileUploader
     }
 
     /**
+     * Saves meta info of file in Database
      * @return bool|string
      */
     private function saveMetaInfo()
@@ -177,11 +180,15 @@ class FileUploader
     }
 
 
+    /**
+     * To get the list of available drivers
+     * This is the test function not used in functionality
+     */
     public function getPdoAvailableDrivers()
     {
         foreach(PDO::getAvailableDrivers() as $driver)
         {
-            echo $driver.'<br />';
+            echo $driver.'\n';
         }
     }
 
