@@ -5,9 +5,6 @@
  * Time: 11:00 AM
  */
 
-ini_set("memory_limit", "1024M" );
-define('ROOT', dirname(__FILE__));
-define("DEFAULT_UPLOAD_DIR", 'uploads');
 
 include_once "dbconnection.php";
 /**

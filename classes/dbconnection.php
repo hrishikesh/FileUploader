@@ -32,7 +32,7 @@ class DBConnection
     {
         $count = $this->dbConnection->exec($query);
 
-        $this->closeConnection();
+
         if($count > 0) {
             return $this->dbConnection->lastInsertId();
         }
