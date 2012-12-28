@@ -21,6 +21,12 @@ class FileUploader
      * @var string
      */
     private $fileName;
+
+    /**
+     *@var string
+     */
+    private $actualFileName;
+
     /**
      * @var float
      */
@@ -103,18 +109,25 @@ class FileUploader
      * Returns actual name of file
      * @return string
      */
-    public function getActualFileName()
+    private function setActualFileName()
     {
         if(!is_dir($this->getUploadPath())) {
             mkdir($this->getUploadPath(), 0755);
         }
-        if(!file_exists($this->getUploadPath() . $this->getFileName())) {
-            $actualFileName = $this->getFileName();
-        } else {
+        $actualFileName = $this->getFileName();
+        if(file_exists($this->getUploadPath() . $this->getFileName())) {
             $actualFileName = $this->getFileName() . '_' . time();
         }
 
-        return $actualFileName;
+        $this->actualFileName = $actualFileName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActualFileName()
+    {
+        return $this->actualFileName;
     }
 
     /**
@@ -122,6 +135,7 @@ class FileUploader
      */
     public function getUploadFilePath()
     {
+        $this->setActualFileName();
         return $this->getUploadPath() . $this->getActualFileName();
     }
 
@@ -168,9 +182,9 @@ class FileUploader
      */
     private function saveMetaInfo()
     {
-        $query = sprintf('INSERT INTO uploads_meta(file_name, file_actual_name, file_path, file_size) VALUES(%s,%s,%s,%f)',
+        $query = sprintf('INSERT INTO uploads_meta(file_name, file_actual_name, file_path, file_size) VALUES("%s","%s","%s",%f)',
             $this->getFileName(),$this->getActualFileName(),$this->getUploadFilePath(),$this->getFileSize());
-
+        
         if($lastInsertId = $this->dbConnect->insertData($query)) {
             return $lastInsertId;
         }
