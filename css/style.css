@@ -1,0 +1,17 @@
+#aupload {
+    border:2px dashed #ddd;
+    width:100px;
+    height:100px;
+    margin-right:10px;
+    padding:10px;
+    float:left;
+}
+
+#uploaded {
+    border: 1px solid #ddd;
+    width:550px;
+    height:102px;
+    padding:10px;
+    float:left;
+    overflow-y:auto;
+}
